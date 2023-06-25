@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-12 pt-3 d-flex align-items-center justify-content-between">
+    <a [routerLink]="'/'">
+      <img src="../../assets/images/logo.png" height="50px" alt="" />
+    </a>
+    <div class="btn-group" dropdown>
+      <button
+        id="button-animated"
+        dropdownToggle
+        type="button"
+        class="btn btn-link dropdown-toggle"
+        aria-controls="dropdown-animated"
+      >
+        <i class="fa fa-globe" aria-hidden="true"></i>
+        {{ siteLanguage }}
+        <span class="caret"></span>
+      </button>
+      <ul
+        id="dropdown-animated"
+        *dropdownMenu
+        class="dropdown-menu dropdown-menu-right"
+        role="menu"
+        aria-labelledby="button-animated"
+      >
+        <ng-container *ngFor="let language of languageList">
+          <li role="menuitem">
+            <a
+              class="dropdown-item"
+              (click)="changeSiteLanguage(language.code)"
+            >
+              {{ language.label }}
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="d-flex flex-column">
+      <span>{{ machineInfo?.BRANCH_NAME | uppercase }}</span>
+      <span>{{ machineInfo?.BRANCH_ID | uppercase }}</span>
+      <span></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+export const CARD_INFO = {
+  CARD_NUMBER: '1234123412341234',
+  CARD_OWNER: 'Tunir Saha',
+  CARD_PIN: '123456',
+  BALANCE: 1234,
+};
