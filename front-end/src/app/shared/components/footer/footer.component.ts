@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  showFooter = false;
+  userLoggedIn = false;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
@@ -24,7 +24,7 @@ export class FooterComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe((userInfo) => {
-        this.showFooter = userInfo.cardNumber !== '';
+        this.userLoggedIn = userInfo.cardNumber !== '';
       });
   }
 

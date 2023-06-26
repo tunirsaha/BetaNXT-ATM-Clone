@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UtilityService } from '../shared/services/utility.service';
-import { DELAYS } from '../shared/constants/system-ui';
-import { AuthService } from '../shared/services/auth.service';
+import { UtilityService } from '../../shared/services/utility.service';
+import { DELAYS } from '../../shared/constants/system-ui';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-wrong-pin',

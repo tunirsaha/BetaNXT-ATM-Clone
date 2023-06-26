@@ -1,0 +1,45 @@
+<div class="row">
+  <form [formGroup]="form" (ngSubmit)="save()" class="col-3 mx-auto mt-5 pt-5">
+    <div class="mb-3">
+      <label for="username">Enter Username</label>
+      <input
+        id="username"
+        type="text"
+        class="form-control"
+        autofocus="true"
+        formControlName="username"
+      />
+      <p
+        class="text-danger"
+        *ngIf="usernameControl.hasError('required') && usernameControl.touched"
+      >
+        Username is required
+      </p>
+    </div>
+    <div>
+      <label for="password">Enter Password</label>
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        class="form-control"
+      />
+      <p
+        class="text-danger"
+        *ngIf="passwordControl.hasError('required') && passwordControl.touched"
+      >
+        Password is required
+      </p>
+    </div>
+    <div class="mt-4">
+      <button
+        type="submit"
+        [disabled]="!form.valid"
+        class="btn btn-primary me-3"
+      >
+        Submit
+      </button>
+      <button type="reset" class="btn btn-warning">Reset</button>
+    </div>
+  </form>
+</div>

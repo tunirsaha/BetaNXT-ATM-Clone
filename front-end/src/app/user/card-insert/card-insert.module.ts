@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { CardInsertComponent } from './card-insert.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CashWithdrawalComponent } from './cash-withdrawal.component';
+import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: CashWithdrawalComponent,
+    component: CardInsertComponent,
   },
 ];
 
 @NgModule({
-  declarations: [CashWithdrawalComponent],
+  declarations: [CardInsertComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,
@@ -21,4 +21,4 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ],
 })
-export class CashWithdrawalModule {}
+export class CardInsertModule {}

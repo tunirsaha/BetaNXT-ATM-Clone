@@ -1,3 +1,7 @@
-<p class="bg-white d-inline-block p-3 exit" *ngIf="showFooter">
+<p class="bg-white d-inline-block p-3 admin" *ngIf="!userLoggedIn">
+  <a [routerLink]="'/admin'">ADMIN LOGIN</a>
+</p>
+
+<p class="bg-white d-inline-block p-3 exit" *ngIf="userLoggedIn">
   <a (click)="exit()">EXIT AND REMOVE CARD</a>
 </p>

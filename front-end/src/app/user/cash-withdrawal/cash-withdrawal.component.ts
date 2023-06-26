@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Subject } from 'rxjs/internal/Subject';
 import { filter, take, takeUntil } from 'rxjs/operators';
-import { Denominations } from '../shared/models/money';
-import { UserInfo } from '../shared/models/user-info';
-import { StoreService } from '../shared/services/store.service';
-import { UtilityService } from '../shared/services/utility.service';
+import { Denominations } from '../../shared/models/money';
+import { UserInfo } from '../../shared/models/user-info';
+import { StoreService } from '../../shared/services/store.service';
+import { UtilityService } from '../../shared/services/utility.service';
 
 @Component({
   selector: 'app-cash-withdrawal',

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
-import { USER_INFO, UserInfo } from '../shared/models/user-info';
-import { StoreService } from '../shared/services/store.service';
-import { UtilityService } from '../shared/services/utility.service';
-import { DELAYS } from '../shared/constants/system-ui';
+import { USER_INFO, UserInfo } from '../../shared/models/user-info';
+import { StoreService } from '../../shared/services/store.service';
+import { UtilityService } from '../../shared/services/utility.service';
+import { DELAYS } from '../../shared/constants/system-ui';
 
 @Component({
   selector: 'app-card-insert',
@@ -60,9 +60,9 @@ export class CardInsertComponent implements OnInit {
   save() {
     if (this.form.valid) {
       if (this.userInfo.cardPin === this.form.value.pin) {
-        this.utilityService.navigate(this.redirectTo);
+        this.utilityService.navigate('user/' + this.redirectTo);
       } else {
-        this.utilityService.navigate('/wrong-pin');
+        this.utilityService.navigate('user/wrong-pin');
       }
     }
   }

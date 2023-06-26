@@ -1,24 +1,24 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AdminLoginComponent } from './admin-login.component';
 import { RouterModule, Routes } from '@angular/router';
-import { CardInsertComponent } from './card-insert.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: CardInsertComponent,
+    component: AdminLoginComponent,
   },
 ];
 
 @NgModule({
-  declarations: [CardInsertComponent],
+  declarations: [AdminLoginComponent],
   imports: [
-    ReactiveFormsModule,
     CommonModule,
+    ReactiveFormsModule,
     SharedModule,
     RouterModule.forChild(routes),
   ],
 })
-export class CardInsertModule {}
+export class AdminLoginModule {}

@@ -18,6 +18,6 @@ export class AuthService {
 
   killSession() {
     this.storeService.userInfo.next(new UserInfo());
-    this.utilityService.navigate('/');
+    this.utilityService.navigate('user');
   }
 }

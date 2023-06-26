@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MENU_ITEMS } from '../shared/constants/home-menu';
-import { UtilityService } from '../shared/services/utility.service';
-import { MenuItems, SingleMenuItem } from '../shared/models/navigation-menu';
+import { MENU_ITEMS } from '../../shared/constants/home-menu';
+import { UtilityService } from '../../shared/services/utility.service';
+import { MenuItems, SingleMenuItem } from '../../shared/models/navigation-menu';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +16,6 @@ export class HomeComponent implements OnInit {
 
   goToRoute(item: SingleMenuItem) {
     let redirect = item?.allow ? item?.route : '#';
-    this.utilityService.navigate(redirect);
+    this.utilityService.navigate('user/' + redirect);
   }
 }

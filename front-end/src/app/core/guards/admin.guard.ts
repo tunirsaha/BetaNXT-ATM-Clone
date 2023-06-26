@@ -6,7 +6,7 @@ import { StoreService } from 'src/app/shared/services/store.service';
 import { UtilityService } from 'src/app/shared/services/utility.service';
 
 @Injectable({ providedIn: 'root' })
-export class UserAuthGuardService implements CanLoad, OnDestroy {
+export class AdminAuthGuardService implements CanLoad, OnDestroy {
   isPresent = false;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -24,7 +24,7 @@ export class UserAuthGuardService implements CanLoad, OnDestroy {
       }),
       map((userInfo) => {
         if (userInfo.cardNumber === '') {
-          this.utilityService.navigate('user');
+          this.utilityService.navigate('');
         }
         return true;
       })

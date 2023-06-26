@@ -74,7 +74,7 @@ export class UtilityService {
           userCard: userData.cardNumber,
           amount: amount,
         });
-        this.navigate('/withdraw-success');
+        this.navigate('user/withdraw-success');
       });
   }
 
