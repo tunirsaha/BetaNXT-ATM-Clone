@@ -51,3 +51,22 @@ h1 {
     }
   }
 }
+
+.pin-input,
+.amount-input {
+  font-size: 2em;
+  text-align: center;
+}
+
+form {
+  button {
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.blocked {
+  button {
+    cursor: not-allowed !important;
+  }
+}

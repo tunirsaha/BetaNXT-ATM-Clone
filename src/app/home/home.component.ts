@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  MENU_ITEMS,
-  MenuItems,
-  SingleMenuItem,
-} from '../shared/constants/home-menu';
-import { Router } from '@angular/router';
+import { MENU_ITEMS } from '../shared/constants/home-menu';
+import { UtilityService } from '../shared/services/utility.service';
+import { MenuItems, SingleMenuItem } from '../shared/models/navigation-menu';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +10,12 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   menuItems: MenuItems = MENU_ITEMS;
-  constructor(private router: Router) {}
+  constructor(private utilityService: UtilityService) {}
 
   ngOnInit(): void {}
 
   goToRoute(item: SingleMenuItem) {
     let redirect = item?.allow ? item?.route : '#';
-    this.router.navigateByUrl(redirect);
+    this.utilityService.navigate(redirect);
   }
 }

@@ -1,0 +1,5 @@
+export const DELAYS = {
+  CARD_READ: 2,
+  FLOW_END_REDIRECT: 5,
+  WRONG_PIN_REDIRECT: 3,
+};

@@ -1,23 +1,38 @@
-import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanLoad,
-  Route,
-  Router,
-} from '@angular/router';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { Injectable, OnDestroy } from '@angular/core';
+import { CanLoad, UrlTree } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
+import { filter, map, takeUntil, tap } from 'rxjs/operators';
+import { StoreService } from 'src/app/shared/services/store.service';
+import { UtilityService } from 'src/app/shared/services/utility.service';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class AuthGuard implements CanLoad {
-  constructor(private router: Router, private authService: AuthService) {}
+@Injectable({ providedIn: 'root' })
+export class AuthGuardService implements CanLoad, OnDestroy {
+  isPresent = false;
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
-  canLoad(route: Route): boolean {
-    // const routeData = route?.data;
-    // const failSafe = routeData['failSafe'] || '';
-    // if (!this.authService.checkAuthorization())
-    //   this.router.navigateByUrl(failSafe);
-    return this.authService.checkAuthorization();
+  constructor(
+    private storeService: StoreService,
+    private utilityService: UtilityService
+  ) {}
+
+  canLoad(): Observable<boolean> | UrlTree {
+    return this.storeService.userInfo.pipe(
+      filter((userInfo) => !!userInfo),
+      takeUntil(this.destroy$),
+      tap((userInfo) => {
+        console.log('GUARD==>', userInfo);
+      }),
+      map((userInfo) => {
+        if (userInfo.cardNumber === '') {
+          this.utilityService.navigate('');
+        }
+        return true;
+      })
+    );
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

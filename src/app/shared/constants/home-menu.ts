@@ -1,13 +1,4 @@
-export interface MenuItems {
-  left: Array<SingleMenuItem>;
-  right: Array<SingleMenuItem>;
-}
-
-export interface SingleMenuItem {
-  name: string;
-  route: string;
-  allow: boolean;
-}
+import { MenuItems } from '../models/navigation-menu';
 
 export const MENU_ITEMS: MenuItems = {
   left: [

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { filter, of, take, tap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Subject, filter, of, take, takeUntil, tap } from 'rxjs';
+import { StoreService } from '../../services/store.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -8,25 +8,32 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
-export class FooterComponent {
-  showFooter = true;
+export class FooterComponent implements OnInit {
+  showFooter = false;
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private authService: AuthService, private router: Router) {
-    this.router.events
+  constructor(
+    private storeService: StoreService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.storeService.userInfo
       .pipe(
-        take(1),
-        filter((event: any) => !!event),
-        tap((event: any) => {
-          if (['/support'].includes(event.url)) {
-            this.showFooter = false;
-          }
-          return of(null);
-        })
+        filter((userInfo) => !!userInfo),
+        takeUntil(this.destroy$)
       )
-      .subscribe();
+      .subscribe((userInfo) => {
+        this.showFooter = userInfo.cardNumber !== '';
+      });
   }
 
   exit() {
-    this.authService.logOut();
+    this.authService.killSession();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

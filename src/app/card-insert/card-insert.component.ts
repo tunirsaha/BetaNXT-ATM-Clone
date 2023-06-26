@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
-import { CARD_INFO } from '../shared/constants/user-info';
+import { USER_INFO, UserInfo } from '../shared/models/user-info';
 import { StoreService } from '../shared/services/store.service';
+import { UtilityService } from '../shared/services/utility.service';
+import { DELAYS } from '../shared/constants/system-ui';
 
 @Component({
   selector: 'app-card-insert',
@@ -12,20 +14,20 @@ import { StoreService } from '../shared/services/store.service';
 })
 export class CardInsertComponent implements OnInit {
   isCardInserted = false;
-  cardInfo = CARD_INFO;
+  userInfo: UserInfo = new UserInfo();
   redirectTo = '';
 
   constructor(
     private storeService: StoreService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router
+    private utilityService: UtilityService
   ) {
     this.getQueryParams();
   }
 
   form = this.fb.group({
-    pin: ['', [Validators.minLength(4)]],
+    pin: ['', [Validators.required, Validators.minLength(4)]],
   });
 
   get pinControl() {
@@ -44,20 +46,23 @@ export class CardInsertComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.switchToPin(1);
+    this.readUserCard(DELAYS.CARD_READ);
   }
 
-  switchToPin(delay: number) {
+  readUserCard(delay: number) {
     setTimeout(() => {
+      this.userInfo = USER_INFO;
+      this.storeService.userInfo.next(this.userInfo);
       this.isCardInserted = true;
-      this.storeService.cardNumber.next(this.cardInfo.CARD_NUMBER);
     }, delay * 1000);
   }
 
   save() {
     if (this.form.valid) {
-      if (this.cardInfo.CARD_PIN === this.form.value.pin) {
-        this.router.navigateByUrl(this.redirectTo);
+      if (this.userInfo.cardPin === this.form.value.pin) {
+        this.utilityService.navigate(this.redirectTo);
+      } else {
+        this.utilityService.navigate('/wrong-pin');
       }
     }
   }
