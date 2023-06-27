@@ -6,9 +6,9 @@ export const MACHINE_INFO = {
 };
 
 export const DELAYS = {
-  CARD_READ: 0.1,
-  FLOW_END_REDIRECT: 0.1,
-  WRONG_PIN_REDIRECT: 0.1,
+  CARD_READ: 3,
+  FLOW_END_REDIRECT: 5,
+  WRONG_PIN_REDIRECT: 5,
 };
 
 export const MARQUEE_MSGS = [
