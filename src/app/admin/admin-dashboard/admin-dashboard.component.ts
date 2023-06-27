@@ -57,8 +57,6 @@ export class AdminDashboardComponent implements OnInit {
 
   updateBalance() {
     if (this.form.valid) {
-      this.form.reset();
-      alert('Cash Loaded Successfully !!!');
       this.storeService.transactions.pipe(take(1)).subscribe((current: any) => {
         current.push({
           timeStamp: moment().format('L hh:mm:ss a'),
@@ -68,6 +66,8 @@ export class AdminDashboardComponent implements OnInit {
         this.storeService.transactions.next(current);
       });
       this.storeService.availableBillValue.next(this.form.value);
+      this.form.reset();
+      alert('Cash Loaded Successfully');
     }
   }
 
