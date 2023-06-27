@@ -23,7 +23,7 @@ const routes: Routes = [
       },
       {
         path: 'cash-withdrawal',
-        // canLoad: [UserAuthGuardService],
+        canLoad: [UserAuthGuardService],
         loadChildren: () =>
           import('./user/cash-withdrawal/cash-withdrawal.module').then(
             (m) => m.CashWithdrawalModule

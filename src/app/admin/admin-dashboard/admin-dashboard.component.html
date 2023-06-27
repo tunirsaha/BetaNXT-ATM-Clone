@@ -75,7 +75,7 @@
             <th>Quantity</th>
           </thead>
           <tbody>
-            <tr *ngFor="let item of availableBills | keyvalue">
+            <tr *ngFor="let item of updatedBills | keyvalue">
               <td>{{ formatBillFaceValue(item.key) }}</td>
               <td>
                 <input
@@ -93,10 +93,16 @@
               <td></td>
               <td>
                 <button
-                  class="btn btn-primary"
+                  class="btn btn-primary mr-3"
                   type="submit"
                 >
                   Update
+                </button>
+                <button
+                  class="btn btn-warning"
+                  type="reset"
+                >
+                  Reset
                 </button>
               </td>
             </tr>

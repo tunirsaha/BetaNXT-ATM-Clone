@@ -1,12 +1,14 @@
 export const MACHINE_INFO = {
   BRANCH_NAME: 'London EC2V 8EA',
   BRANCH_ID: 'SBILONEC2V8EA',
+  BRANCH_ADDRESS: '15-17 King St, London EC2V 8EA, United Kingdom',
+  BRANCH_CONTACT: '+44 20 7454 4300',
 };
 
 export const DELAYS = {
-  CARD_READ: 0.5,
-  FLOW_END_REDIRECT: 0.5,
-  WRONG_PIN_REDIRECT: 0.3,
+  CARD_READ: 0.1,
+  FLOW_END_REDIRECT: 0.1,
+  WRONG_PIN_REDIRECT: 0.1,
 };
 
 export const MARQUEE_MSGS = [

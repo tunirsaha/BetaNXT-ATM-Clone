@@ -30,6 +30,13 @@ export class UtilityService {
       .reverse();
   }
 
+  getSumOfTotalBills(denominations: Bills) {
+    let sum = 0;
+    Object.keys(denominations).forEach((i) => {
+      sum += parseInt(i.replace('bill_', '')) * denominations[i as keyof Bills];
+    });
+  }
+
   atmBalanceUpdator(amount: number, denominations: Bills): PreUpdate {
     const billsFaceValues: Array<number> = this.getArrayOfBillValues();
     let billCounter: Array<number> = Array(billsFaceValues.length).fill(0);
@@ -81,7 +88,7 @@ export class UtilityService {
             current.push({
               timeStamp: moment().format('L hh:mm:ss a'),
               userCard: userData.cardNumber,
-              amount: amount,
+              amount: amount * -1,
             });
             this.storeService.transactions.next(current);
           });
