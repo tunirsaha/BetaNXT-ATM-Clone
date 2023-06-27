@@ -16,3 +16,5 @@ export const MARQUEE_MSGS = [
   'We are offering Zero Balance Savings Account with 4% Interest Rate. Open your Savings Account now by visiting our branch.',
   'We are offering Life Time Free Credit Card. Initial Credit Limit is 50,000. Visit https://onlinesbi.sbi and fill your details today.',
 ];
+
+export const DATE_TIME_FORMAT = 'L hh:mm:ss a';

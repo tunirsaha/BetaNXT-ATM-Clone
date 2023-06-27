@@ -6,6 +6,7 @@ import { StoreService } from 'src/app/shared/services/store.service';
 import { Bills } from '../../shared/models/money';
 import * as moment from 'moment';
 import { UtilityService } from 'src/app/shared/services/utility.service';
+import { DATE_TIME_FORMAT } from 'src/app/shared/constants/system-ui';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -59,7 +60,7 @@ export class AdminDashboardComponent implements OnInit {
     if (this.form.valid) {
       this.storeService.transactions.pipe(take(1)).subscribe((current: any) => {
         current.push({
-          timeStamp: moment().format('L hh:mm:ss a'),
+          timeStamp: moment().format(DATE_TIME_FORMAT),
           userCard: 'CASH LOAD BY SYSTEM ADMIN',
           amount: this.utilityService.getSumOfTotalBills(this.form.value),
         });

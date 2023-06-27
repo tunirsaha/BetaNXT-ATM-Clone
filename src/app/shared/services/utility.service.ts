@@ -6,6 +6,7 @@ import { Bills } from '../models/money';
 import { StoreService } from './store.service';
 import * as moment from 'moment';
 import { PreUpdate } from '../models/atm-updator';
+import { DATE_TIME_FORMAT } from '../constants/system-ui';
 @Injectable({
   providedIn: 'root',
 })
@@ -97,7 +98,7 @@ export class UtilityService {
           .pipe(take(1))
           .subscribe((current: any) => {
             current.push({
-              timeStamp: moment().format('L hh:mm:ss a'),
+              timeStamp: moment().format(DATE_TIME_FORMAT),
               userCard: userData.cardNumber,
               amount: amount * -1,
             });
