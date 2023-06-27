@@ -1,0 +1,15 @@
+<p
+  class="bg-white d-inline-block px-3 py-2 admin"
+  *ngIf="!userLoggedIn"
+  (click)="exitAdmin()"
+>
+  <span>ADMIN {{ adminLoggedIn ? "LOGOUT" : "LOGIN" }}</span>
+</p>
+
+<p
+  class="bg-white d-inline-block px-3 py-2 exit"
+  *ngIf="userLoggedIn"
+  (click)="exitUser()"
+>
+  <span>EXIT AND REMOVE CARD</span>
+</p>

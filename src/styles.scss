@@ -1,0 +1,78 @@
+// Variable overrides first
+// $primary: #900;
+$enable-shadows: true;
+// $prefix: "mo-";
+
+// Then import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap"; /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap");
+
+body {
+  font-family: "Belanosima", sans-serif;
+  background-color: #9bc9d8;
+}
+
+h1 {
+  &.menu-link {
+    &.left-items,
+    &.right-items {
+      --mask: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 1) 0,
+          rgba(0, 0, 0, 1) 60%,
+          rgba(0, 0, 0, 0) 90%,
+          rgba(0, 0, 0, 0) 0
+        )
+        100% 50% / 100% 100% repeat-x;
+      border: 1px #fff dashed;
+      -webkit-mask: var(--mask);
+      mask: var(--mask);
+      border-radius: 5px;
+    }
+    &.right-items {
+      --mask: linear-gradient(
+          to left,
+          rgba(0, 0, 0, 1) 0,
+          rgba(0, 0, 0, 1) 60%,
+          rgba(0, 0, 0, 0) 90%,
+          rgba(0, 0, 0, 0) 0
+        )
+        100% 50% / 100% 100% repeat-x;
+    }
+    a {
+      text-decoration: none;
+      color: #000;
+      &.allow {
+        cursor: pointer;
+      }
+      &.block {
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.pin-input,
+.amount-input {
+  font-size: 2em;
+  text-align: center;
+}
+
+form {
+  button {
+    background-color: transparent;
+    border: none;
+  }
+}
+
+.blocked {
+  button {
+    cursor: not-allowed !important;
+  }
+}
+
+.btn {
+  &:disabled {
+    cursor: not-allowed !important;
+  }
+}

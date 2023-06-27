@@ -1,0 +1,108 @@
+<div class="row mt-5 pt-3">
+  <div class="col-10 mx-auto">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a
+          (click)="step = 1"
+          class="nav-link"
+          [ngClass]="{ active: step === 1 }"
+          aria-current="page"
+          >Balance</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          (click)="step = 2"
+          class="nav-link"
+          [ngClass]="{ active: step === 2 }"
+          >Transactions</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          (click)="step = 3"
+          class="nav-link"
+          [ngClass]="{ active: step === 3 }"
+          aria-current="page"
+          >Load Cash</a
+        >
+      </li>
+    </ul>
+    <div *ngIf="step === 1" class="p-3 bg-white">
+      <table class="table table-striped table-hover" *ngIf="availableBills">
+        <thead>
+          <th>Bills</th>
+          <th>Quantity</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of availableBills | keyvalue">
+            <td>{{ formatBillFaceValue(item.key) }}</td>
+            <td>{{ item?.value }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="alert alert-warning" *ngIf="!availableBills">
+        No Bills in ATM!
+      </p>
+    </div>
+    <div *ngIf="step === 2" class="p-3 bg-white">
+      <table
+        class="table table-striped table-hover"
+        *ngIf="transactions?.length"
+      >
+        <thead>
+          <th>Date</th>
+          <th>Card Number</th>
+          <th>Amount</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of transactions">
+            <td>{{ t["timeStamp"] }}</td>
+            <td>{{ t["userCard"] }}</td>
+            <td>{{ t["amount"] }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="alert alert-warning" *ngIf="!transactions?.length">
+        No Transactions to display!
+      </p>
+    </div>
+    <div *ngIf="step === 3" class="p-3 bg-white">
+      <form [formGroup]="form" (ngSubmit)="updateBalance()">
+        <table class="table table-striped table-hover" *ngIf="availableBills">
+          <thead>
+            <th>Bills</th>
+            <th>Quantity</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of availableBills | keyvalue">
+              <td>{{ formatBillFaceValue(item.key) }}</td>
+              <td>
+                <input
+                  class="form-control w-50"
+                  type="number"
+                  autocomplete="off"
+                  [formControlName]="item.key"
+                  numbersOnly
+                />
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  type="submit"
+                >
+                  Update
+                </button>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>

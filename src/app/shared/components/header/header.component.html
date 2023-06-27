@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-12 pt-3 d-flex align-items-center justify-content-between">
+    <a [routerLink]="'/'">
+      <img src="../../assets/images/logo.png" height="50px" alt="" />
+    </a>
+    <div class="d-flex flex-column text-end">
+      <p class="m-0 p-0">{{ machineInfo?.BRANCH_NAME | uppercase }}</p>
+      <p class="m-0 p-0">{{ machineInfo?.BRANCH_ID | uppercase }}</p>
+      <p class="m-0 p-0"><app-time-ticker></app-time-ticker></p>
+    </div>
+  </div>
+</div>

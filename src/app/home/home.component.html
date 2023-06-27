@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="pt-2">
+    <marquee behavior="scroll" direction="left">
+      <p class="marquee m-0 p-0" *ngFor="let msg of marqueeMsgs">{{ msg }}</p>
+    </marquee>
+  </div>
+  <div class="col-6 text-start pt-2">
+    <h1
+      *ngFor="let item of menuItems?.left"
+      class="menu-link left-items mb-3 py-3 ps-3 bg-white"
+    >
+      <a
+        [ngClass]="{ allow: item?.allow, block: !item?.allow }"
+        (click)="goToRoute(item)"
+        >{{ item?.name | uppercase }}</a
+      >
+    </h1>
+  </div>
+  <div class="col-6 text-end pt-2">
+    <h1
+      *ngFor="let item of menuItems?.right"
+      class="menu-link right-items mb-3 py-3 pe-3 bg-white"
+    >
+      <a
+        [ngClass]="{ allow: item?.allow, block: !item?.allow }"
+        (click)="goToRoute(item)"
+        >{{ item?.name | uppercase }}</a
+      >
+    </h1>
+  </div>
+</div>
