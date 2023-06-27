@@ -65,7 +65,12 @@ export class AdminDashboardComponent implements OnInit {
         });
         this.storeService.transactions.next(current);
       });
-      this.storeService.availableBillValue.next(this.form.value);
+      this.storeService.availableBillValue.next(
+        this.utilityService.addBillstoExisting(
+          this.availableBills,
+          this.form.value
+        )
+      );
       this.form.reset();
       alert('Cash Loaded Successfully');
     }
