@@ -46,7 +46,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   generateLoadCashForm(billData: Bills) {
-    Object.keys(this.availableBills).forEach((i) => {
+    Object.keys(billData).forEach((i) => {
       this.form.addControl(i, new FormControl(billData[i as keyof Bills], []));
     });
   }
@@ -56,15 +56,17 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   updateBalance() {
-    this.storeService.transactions.pipe(take(1)).subscribe((current: any) => {
-      current.push({
-        timeStamp: moment().format('L hh:mm:ss a'),
-        userCard: 'CASH LOAD BY SYSTEM ADMIN',
-        amount: this.utilityService.getSumOfTotalBills(this.updatedBills),
+    if (this.form.valid) {
+      this.storeService.transactions.pipe(take(1)).subscribe((current: any) => {
+        current.push({
+          timeStamp: moment().format('L hh:mm:ss a'),
+          userCard: 'CASH LOAD BY SYSTEM ADMIN',
+          amount: this.utilityService.getSumOfTotalBills(this.updatedBills),
+        });
+        this.storeService.transactions.next(current);
       });
-      this.storeService.transactions.next(current);
-    });
-    this.storeService.availableBillValue.next(this.updatedBills);
+      this.storeService.availableBillValue.next(this.updatedBills);
+    }
   }
 
   ngOnDestroy() {
