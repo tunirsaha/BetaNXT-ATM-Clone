@@ -33,8 +33,10 @@ export class UtilityService {
   getSumOfTotalBills(denominations: Bills) {
     let sum = 0;
     Object.keys(denominations).forEach((i) => {
-      sum += parseInt(i.replace('bill_', '')) * denominations[i as keyof Bills];
+      let key = i;
+      sum += parseInt(i.replace('bill_', '')) * denominations[key as keyof Bills];
     });
+    return sum;
   }
 
   atmBalanceUpdator(amount: number, denominations: Bills): PreUpdate {
