@@ -64,7 +64,7 @@ const routes: Routes = [
       {
         path: 'support',
         loadChildren: () =>
-          import('./support/support.module').then((m) => m.SupportModule),
+          import('./user/support/support.module').then((m) => m.SupportModule),
       },
     ],
   },

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MACHINE_INFO } from '../shared/constants/system-ui';
+import { MACHINE_INFO } from '../../shared/constants/system-ui';
 
 @Component({
   selector: 'app-support',
