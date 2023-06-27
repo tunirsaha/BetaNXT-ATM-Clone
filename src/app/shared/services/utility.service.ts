@@ -32,10 +32,12 @@ export class UtilityService {
 
   getSumOfTotalBills(denominations: Bills) {
     let sum = 0;
+    console.log(denominations)
     Object.keys(denominations).forEach((i) => {
       let key = i;
       sum += parseInt(i.replace('bill_', '')) * denominations[key as keyof Bills];
     });
+    console.log(sum)
     return sum;
   }
 

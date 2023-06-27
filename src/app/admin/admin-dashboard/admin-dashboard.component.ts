@@ -61,11 +61,11 @@ export class AdminDashboardComponent implements OnInit {
         current.push({
           timeStamp: moment().format('L hh:mm:ss a'),
           userCard: 'CASH LOAD BY SYSTEM ADMIN',
-          amount: this.utilityService.getSumOfTotalBills(this.updatedBills),
+          amount: this.utilityService.getSumOfTotalBills(this.form.value),
         });
         this.storeService.transactions.next(current);
       });
-      this.storeService.availableBillValue.next(this.updatedBills);
+      this.storeService.availableBillValue.next(this.form.value);
     }
   }
 
