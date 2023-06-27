@@ -1,5 +1,5 @@
 export const USER_INFO = {
-  cardNumber: '1234123412341234',
+  cardNumber: '1234 1234 1234 1234',
   name: 'Tunir Saha',
   cardPin: '123456',
   balance: 1235,
