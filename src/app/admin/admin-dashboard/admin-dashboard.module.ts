@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminDashboardComponent } from './admin-dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AdminDashboardComponent],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes)],
+  imports: [
+    SharedModule,
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+  ],
 })
 export class AdminDashboardModule {}
